@@ -5,14 +5,14 @@
 
 ---
 
-## 📌 Descripción del Proyecto
+## Descripción del Proyecto
 Este repositorio contiene el ecosistema de **microservicios Backend** desarrollado en **Java Spring Boot**, diseñado para dar soporte a la aplicación móvil Android de **CORPALIV** (Corporación de Padres y Amigos por la Limitación Visual).
 
 La arquitectura desacoplada implementa persistencia relacional con **MySQL** orquestado vía **Docker**, endpoints RESTful con soporte CORS y scripts automatizados de compilación y despliegue multiplataforma (Linux / Windows).
 
 ---
 
-## 🏗️ Arquitectura de Microservicios
+## Arquitectura de Microservicios
 
 ```
 Backend-Mobile/
@@ -41,7 +41,7 @@ Backend-Mobile/
 
 ---
 
-## 🛠️ Tecnologías y Herramientas
+## Tecnologías y Herramientas
 
 - **Lenguaje:** Java 21 (OpenJDK LTS)
 - **Framework:** Spring Boot 4.x / 3.x
@@ -54,7 +54,7 @@ Backend-Mobile/
 
 ---
 
-## 🚀 Puesta en Marcha Rápida
+## Puesta en Marcha Rápida
 
 ### Prerrequisitos
 - Tener instalado **Docker Desktop** (o Docker Engine en Linux).
@@ -83,7 +83,7 @@ detener_servicios.bat
 
 ---
 
-## 📡 Catálogo de Endpoints RESTful
+## Catálogo de Endpoints RESTful
 
 ### 1. `alianza-service` (Puerto `8081`)
 Gestiona el flujo de solicitudes de alianzas corporativas y capacitaciones enviadas desde el formulario de la app móvil.
@@ -137,7 +137,7 @@ Gestiona los productos solidarios y talleres elaborados por la comunidad de CORP
 
 ---
 
-## 📱 Guía de Integración con la App Móvil (Android / Retrofit)
+## Guía de Integración con la App Móvil (Android / Retrofit)
 
 Para conectar la aplicación Android desarrollada en Kotlin/Jetpack Compose:
 
@@ -157,6 +157,6 @@ Para conectar la aplicación Android desarrollada en Kotlin/Jetpack Compose:
 
 ---
 
-## 👥 Equipo de Desarrollo
+## Equipo de Desarrollo
 - **Backend Developer & DevOps:** Joaquín Aenishanslins (`@aenismerino`)
 - **Frontend & Android Integration:** Equipo DSY1105 - Duoc UC
