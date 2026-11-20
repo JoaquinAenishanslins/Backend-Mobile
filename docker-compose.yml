@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   mysql-db:
     image: mysql:8.0
@@ -12,6 +10,78 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+    networks:
+      - corpaliv-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  auth-service:
+    build: ./auth-service
+    container_name: corpaliv-auth
+    restart: always
+    ports:
+      - "8083:8083"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/corpaliv_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+    networks:
+      - corpaliv-network
+
+  alianza-service:
+    build: ./alianza-service
+    container_name: corpaliv-alianzas
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/corpaliv_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+    networks:
+      - corpaliv-network
+
+  catalogo-service:
+    build: ./catalogo-service
+    container_name: corpaliv-catalogo
+    restart: always
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/corpaliv_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+    networks:
+      - corpaliv-network
+
+  api-gateway:
+    build: ./api-gateway
+    container_name: corpaliv-gateway
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - auth-service
+      - alianza-service
+      - catalogo-service
+    networks:
+      - corpaliv-network
 
 volumes:
   mysql_data:
+
+networks:
+  corpaliv-network:
+    driver: bridge

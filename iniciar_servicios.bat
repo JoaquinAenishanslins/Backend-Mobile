@@ -1,7 +1,6 @@
 @echo off
 REM ========================================================
-REM Script para iniciar todo el Backend en Windows
-REM Incluye: Docker (MySQL), Build de Microservicios y Run
+REM Script para iniciar todo el Backend en Windows con Docker
 REM ========================================================
 setlocal enabledelayedexpansion
 
@@ -9,33 +8,29 @@ set "BASE_DIR=%~dp0"
 cd /d "%BASE_DIR%"
 
 echo ==========================================
-echo 1. Iniciando base de datos MySQL en Docker...
+echo Iniciando ecosistema de microservicios con Docker...
 echo ==========================================
+
+REM Liberar puertos si estuviesen tomados
+for /f "tokens=5" %%a in ('netstat -aon ^| findstr ":8080 :8081 :8082 :8083 "') do (
+    taskkill /F /PID %%a 2>nul
+)
+
 docker compose up -d
 
-echo Esperando a que MySQL responda...
-timeout /t 5 /nobreak >nul
-
 echo ==========================================
-echo 2. Compilando y ejecutando alianza-service (8081)...
-echo ==========================================
-cd /d "%BASE_DIR%alianza-service"
-call mvnw.cmd clean package -DskipTests
-start "Alianza Service (8081)" cmd /k "java -jar target\alianza-service-0.0.1-SNAPSHOT.jar"
-
-echo ==========================================
-echo 3. Compilando y ejecutando catalogo-service (8082)...
-echo ==========================================
-cd /d "%BASE_DIR%catalogo-service"
-call mvnw.cmd clean package -DskipTests
-start "Catalogo Service (8082)" cmd /k "java -jar target\catalogo-service-0.0.1-SNAPSHOT.jar"
-
-cd /d "%BASE_DIR%"
-echo ==========================================
-echo ¡Todo el backend esta corriendo!
+echo ¡Todo el backend esta corriendo en Docker!
 echo MySQL:           localhost:3306
-echo Alianza Service:  http://localhost:8081/api/solicitudes
-echo Catalogo Service: http://localhost:8082/api/productos
+echo API Gateway:     http://localhost:8080 (Puerto unificado para Android)
+echo Auth Service:    http://localhost:8083
+echo Alianza Service: http://localhost:8081
+echo Catalogo Service:http://localhost:8082
+echo ==========================================
+echo Endpoints unificados a traves del Gateway:
+echo   - POST http://localhost:8080/auth/register
+echo   - POST http://localhost:8080/auth/login
+echo   - GET/POST http://localhost:8080/api/solicitudes
+echo   - GET/POST http://localhost:8080/api/productos
 echo ==========================================
 echo Para detener los servicios ejecuta: detener_servicios.bat
 pause
