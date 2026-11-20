@@ -1,0 +1,53 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.2)
+
+2026-11-19T23:47:49.354-03:00  INFO 110426 --- [catalogo-service] [           main] c.d.c.c.CatalogoServiceApplication       : Starting CatalogoServiceApplication v0.0.1-SNAPSHOT using Java 21.0.13.0.3 with PID 110426 (/home/aenismerino/Juegos_SSD/DuocUC/Desarrollo de apps/Backend-Mobile/catalogo-service/target/catalogo-service-0.0.1-SNAPSHOT.jar started by aenismerino in /home/aenismerino/Juegos_SSD/DuocUC/Desarrollo de apps/Backend-Mobile/catalogo-service)
+2026-11-19T23:47:49.358-03:00  INFO 110426 --- [catalogo-service] [           main] c.d.c.c.CatalogoServiceApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-11-19T23:47:50.203-03:00  INFO 110426 --- [catalogo-service] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-11-19T23:47:50.263-03:00  INFO 110426 --- [catalogo-service] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 51 ms. Found 1 JPA repository interface.
+2026-11-19T23:47:50.813-03:00  INFO 110426 --- [catalogo-service] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8082 (http)
+2026-11-19T23:47:50.832-03:00  INFO 110426 --- [catalogo-service] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-11-19T23:47:50.833-03:00  INFO 110426 --- [catalogo-service] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.27]
+2026-11-19T23:47:50.866-03:00  INFO 110426 --- [catalogo-service] [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1436 ms
+2026-11-19T23:47:51.077-03:00  INFO 110426 --- [catalogo-service] [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-11-19T23:47:51.136-03:00  INFO 110426 --- [catalogo-service] [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.13.Final
+2026-11-19T23:47:51.606-03:00  INFO 110426 --- [catalogo-service] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-11-19T23:47:51.644-03:00  INFO 110426 --- [catalogo-service] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-11-19T23:47:51.826-03:00  INFO 110426 --- [catalogo-service] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1218e12
+2026-11-19T23:47:51.827-03:00  INFO 110426 --- [catalogo-service] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-11-19T23:47:51.902-03:00  INFO 110426 --- [catalogo-service] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/corpaliv_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.46
+	Default catalog/schema: corpaliv_db/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-11-19T23:47:52.633-03:00  INFO 110426 --- [catalogo-service] [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: 
+    create table productos_catalogo (
+        producto_id bigint not null auto_increment,
+        activo bit not null,
+        categoria_producto varchar(255) not null,
+        descripcion_producto varchar(255) not null,
+        nombre_producto varchar(255) not null,
+        precio_producto float(53) not null,
+        stock_producto integer not null,
+        primary key (producto_id)
+    ) engine=InnoDB
+2026-11-19T23:47:52.764-03:00  INFO 110426 --- [catalogo-service] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-11-19T23:47:52.907-03:00  INFO 110426 --- [catalogo-service] [           main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-11-19T23:47:53.253-03:00  WARN 110426 --- [catalogo-service] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-11-19T23:47:53.773-03:00  INFO 110426 --- [catalogo-service] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8082 (http) with context path '/'
+2026-11-19T23:47:53.788-03:00  INFO 110426 --- [catalogo-service] [           main] c.d.c.c.CatalogoServiceApplication       : Started CatalogoServiceApplication in 5.007 seconds (process running for 5.866)
